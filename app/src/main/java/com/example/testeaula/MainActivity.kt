@@ -1,5 +1,6 @@
 package com.example.testeaula
 
+
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -15,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.BorderStroke
 import com.example.testeaula.ui.theme.TesteaulaTheme
 
 class MainActivity : ComponentActivity() {
@@ -62,9 +64,9 @@ fun TelaInicial() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(30.dp),
+            horizontalAlignment = Alignment.CenterHorizontally, // centraliza horizontalmente
+            verticalArrangement = Arrangement.Top
         ) {
             Text(
                 text = "STRAVA",
@@ -73,50 +75,103 @@ fun TelaInicial() {
                 color = MaterialTheme.colorScheme.primary
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(100.dp)) // espaço entre título e blocos
 
-            Button(
-                onClick = {
-                    Log.d("TelaInicial", "Corrida iniciada")
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            // Coluna para os blocos no meio da tela
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(80.dp) // espaçamento entre linhas
             ) {
-                Text(
-                    text = "Iniciar Corrida",
-                    style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(19.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    bloco("Título 1", "Descrição 1", Color.Red)
+                    bloco("Título 2", "Descrição 2", Color.Red)
+                }
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(19.dp),
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    bloco("Título 3", "Descrição 3", Color.Red)
+                    bloco("Título 4", "Descrição 4", Color.Red)
+                }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.weight(1f)) // empurra os botões para baixo
 
-            OutlinedButton(
-
-// Button(onclick = {
-// val intent = Intent(context, SegundaTela::class.java)
-//context.startActivity(intent)
-//}
-                onClick = {
-
-                },
-                border = ButtonDefaults.outlinedButtonBorder.copy(
-                    width = 2.dp
-                )
+            // Linha dos botões na parte inferior
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.Bottom
             ) {
-                Text(
-                    text = "Ver Perfil",
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        color = MaterialTheme.colorScheme.primary
+                Button(
+                    onClick = { },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Text(
+                        text = "Iniciar",
+                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
                     )
-                )
+                }
+
+                Button(
+                    onClick = { },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Text(
+                        text = "Perfil",
+                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
+                    )
+                }
+
+                Button(
+                    onClick = { },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Text(
+                        text = "Mapas",
+                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
+                    )
+                }
             }
         }
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun TelaInicialPreview() {
-    TesteaulaTheme {
-        TelaInicial()
+fun bloco(titulo: String, desc: String, color: Color) {
+    Surface(
+        modifier = Modifier
+            .width(150.dp)
+            .height(150.dp)
+            .padding(5.dp),
+        color = color,
+        shadowElevation = 6.dp,
+        tonalElevation = 6.dp,
+        border = BorderStroke(2.dp, Color.Black)
+    ) {
+        Column(
+            modifier = Modifier.padding(8.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = titulo,
+                style = MaterialTheme.typography.titleLarge,
+                color = Color.Green
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = desc,
+                style = MaterialTheme.typography.bodyMedium,
+                color = Color.White
+            )
+        }
     }
 }
