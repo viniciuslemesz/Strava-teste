@@ -73,13 +73,21 @@ fun TelaPerfil() {
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Image(
-            painter = painterResource(id = R.drawable.voce),
-            contentDescription = "Foto do usuário",
+        Box(
             modifier = Modifier
-                .size(150.dp)
-                .padding(10.dp)
-        )
+                .size(160.dp)
+                .background(Color.White, shape = RoundedCornerShape(80.dp))
+                .padding(5.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.voce),
+                contentDescription = "Foto do usuário",
+                modifier = Modifier
+                    .size(150.dp)
+                    .clip(RoundedCornerShape(75.dp))
+            )
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -91,7 +99,7 @@ fun TelaPerfil() {
         )
 
         Text(
-            text = "Idade: 17 anos",
+            text = "Idade: 18 anos",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
