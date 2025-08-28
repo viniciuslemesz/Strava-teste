@@ -2,7 +2,7 @@ package com.example.testeaula
 
 
 import android.os.Bundle
-import androidx.compose.ui.graphics.Color
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,22 +11,21 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import android.content.Intent
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.ui.platform.LocalContext
 import com.example.testeaula.ui.theme.TesteaulaTheme
 
-class MainActivity : ComponentActivity() {
+class GruposActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             TesteaulaTheme {
-                TelaInicial()
+                TelaGrupos()
             }
         }
     }
@@ -57,7 +56,7 @@ class MainActivity : ComponentActivity() {
 //}
 
 @Composable
-fun TelaInicial() {
+fun TelaGrupos() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -89,32 +88,9 @@ fun TelaInicial() {
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Button(
-                        onClick = {
-                            val context = LocalContext.current
-                            val intent = Intent(context, SegundaTela::class.java)
-                            context.startActivity(intent)
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                    ) {
-                        bloco(
-                            "Grupos",
-                            "Se junte em grupos de corrida.",
-                            MaterialTheme.colorScheme.primary
-                        )
-                    }
-
-                    bloco("Título 2", "Descrição 2", MaterialTheme.colorScheme.primary)
+                    TelaInicio("Título 1", "Descrição 1", color = MaterialTheme.colorScheme.primary)
                 }
 
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(19.dp),
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    bloco("Título 3", "Descrição 3", Color.Orange)
-                    bloco("Título 4", "Descrição 4", Color.Orange)
-                }
             }
 
             Spacer(modifier = Modifier.weight(1f)) // empurra os botões para baixo
@@ -160,7 +136,7 @@ fun TelaInicial() {
 }
 
 @Composable
-fun bloco(titulo: String, desc: String, color: Color) {
+fun TelaInicio(titulo: String, desc: String, color: Color) {
     Surface(
         modifier = Modifier
             .width(150.dp)
