@@ -11,7 +11,9 @@ private val LightColors = lightColorScheme(
     primary = OrangeColor,
     secondary = Color(0xFFFFAB40),
     tertiary = Color(0xFFFFD180),
-    background = Color(0xFFFDFDFD)
+    background = Color(0xFF212121)
+
+
 )
 
 @Composable
