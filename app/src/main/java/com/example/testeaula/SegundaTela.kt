@@ -1,38 +1,36 @@
 package com.example.testeaula
 
-
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.ui.platform.LocalContext
 import com.example.testeaula.ui.theme.TesteaulaTheme
 
-class SegundaTela: ComponentActivity() {
+class SegundaTela : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             TesteaulaTheme {
-                TelaGrupos()
+                TelaPerfil()
             }
         }
     }
 }
-
 
 // PARA LEVAR PARA SEGUNDA TELA
 // Button(onclick = {
@@ -58,139 +56,90 @@ class SegundaTela: ComponentActivity() {
 //}
 
 @Composable
-fun TelaGrupos() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(30.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, // centraliza horizontalmente
-            verticalArrangement = Arrangement.Top
-        ) {
-            Text(
-                text = "STRAVA",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Text(
-                text = "Grupos",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Spacer(modifier = Modifier.height(85.dp)) // espaço entre título e blocos
-
-            // Coluna para os blocos no meio da tela
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(80.dp) // espaçamento entre linhas
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(19.dp),
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TelaInicio("CORREDORES DO BATEL", "ENTRAR", color = MaterialTheme.colorScheme.primary)
-                }
-
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(19.dp),
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TelaInicio("VELOZES E OFEGANTES", "ENTRAR", color = MaterialTheme.colorScheme.primary)
-                }
-
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(19.dp),
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TelaInicio("QUASE MARATONISTAS", "ENTRAR", color = MaterialTheme.colorScheme.primary)
-                }
-
-            }
-
-            Spacer(modifier = Modifier.weight(1f)) // empurra os botões para baixo
-            val context = LocalContext.current
-
-            // Linha dos botões na parte inferior
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.Bottom
-            ) {
-                Button(
-                    onClick = {
-
-                        val intent = Intent(context, MainActivity::class.java)
-                        context.startActivity(intent)
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                ) {
-                    Text(
-                        text = "Inicio",
-                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
-                    )
-                }
-
-                Button(
-                    onClick = { },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                ) {
-                    Text(
-                        text = "Perfil",
-                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
-                    )
-                }
-
-                Button(
-                    onClick = { },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                ) {
-                    Text(
-                        text = "Mapas",
-                        style = MaterialTheme.typography.labelLarge.copy(color = Color.White)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun TelaInicio(titulo: String, desc: String, color: Color) {
-    Surface(
+fun TelaPerfil() {
+    Column(
         modifier = Modifier
-            .width(350.dp)
-            .height(150.dp)
-            .padding(5.dp),
-        color = color,
-        shadowElevation = 6.dp,
-        tonalElevation = 6.dp,
-        border = BorderStroke(2.dp, Color.Black)
+            .fillMaxSize()
+            .padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
     ) {
-        Column(
-            modifier = Modifier.padding(8.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Text(
+            text = "PERFIL",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary
+        )
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Image(
+            painter = painterResource(id = R.drawable.voce),
+            contentDescription = "Foto do usuário",
+            modifier = Modifier
+                .size(150.dp)
+                .padding(10.dp)
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Text(
+            text = "Nome: Vinicius",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+
+        Text(
+            text = "Idade: 17 anos",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+
+        Text(
+            text = "Altura: 1.79m",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+
+        Text(
+            text = "Peso: 71kg",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        Button(
+            onClick = { },
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            shape = RoundedCornerShape(10.dp)
         ) {
             Text(
-                text = titulo,
-                style = MaterialTheme.typography.titleLarge,
-                color = Color.Green
+                text = "Editar Perfil",
+                fontSize = 18.sp,
+                color = Color.White
             )
-            Spacer(modifier = Modifier.height(8.dp))
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        val context = LocalContext.current
+
+        Button(
+            onClick = {
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+            },
+            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+            shape = RoundedCornerShape(10.dp)
+        ) {
             Text(
-                text = desc,
-                style = MaterialTheme.typography.bodyMedium,
+                text = "Inicio",
+                fontSize = 18.sp,
                 color = Color.White
             )
         }
