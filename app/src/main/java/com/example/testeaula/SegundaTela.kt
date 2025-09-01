@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -73,51 +74,26 @@ fun TelaPerfil() {
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Box(
+        Row(
             modifier = Modifier
-                .size(160.dp)
-                .background(Color.White, shape = RoundedCornerShape(80.dp))
-                .padding(5.dp),
-            contentAlignment = Alignment.Center
+                .size(160.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
                 painter = painterResource(id = R.drawable.voce),
                 contentDescription = "Foto do usuário",
                 modifier = Modifier
                     .size(150.dp)
-                    .clip(RoundedCornerShape(75.dp))
             )
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text(
-            text = "Nome: Vinicius",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
-
-        Text(
-            text = "Idade: 18 anos",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
-
-        Text(
-            text = "Altura: 1.79m",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
-
-        Text(
-            text = "Peso: 71kg",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
+        InformacaoCard(titulo = "Nome", descricao = "Vinicius")
+        InformacaoCard(titulo = "Idade", descricao = "18 anos")
+        InformacaoCard(titulo = "Altura", descricao = "1.79m")
+        InformacaoCard(titulo = "Peso", descricao = "71kg")
 
         Spacer(modifier = Modifier.height(50.dp))
 
@@ -153,3 +129,38 @@ fun TelaPerfil() {
         }
     }
 }
+
+@Composable
+fun InformacaoCard(titulo: String, descricao: String) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .padding(8.dp),
+        color = Color(0xFFFF5722), // Laranja
+        shape = RoundedCornerShape(10.dp),
+        border = BorderStroke(2.dp, Color.Black)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = titulo,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.White
+            )
+            Text(
+                text = descricao,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                color = Color.White
+            )
+        }
+    }
+}
+
